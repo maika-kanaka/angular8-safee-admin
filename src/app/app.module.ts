@@ -8,6 +8,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { SidebarLeftComponent } from './admin/sidebar-left/sidebar-left.component';
 import { SidebarRightHeaderComponent } from './admin/sidebar-right-header/sidebar-right-header.component';
 import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password.component';
+import { UserComponent } from './admin/setting/user/user.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password
     DashboardComponent,
     SidebarLeftComponent,
     SidebarRightHeaderComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
