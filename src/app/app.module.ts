@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { HttpClientModule } from '@angular/common/http';
+import { DataTablesModule } from 'angular-datatables';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './admin/login/login.component';
@@ -22,6 +25,10 @@ import { UserComponent } from './admin/setting/user/user.component';
   ],
   imports: [
     BrowserModule,
+
+    HttpClientModule,
+    DataTablesModule,
+
     AppRoutingModule
   ],
   providers: [],
