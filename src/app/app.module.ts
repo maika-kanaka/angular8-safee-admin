@@ -13,6 +13,7 @@ import { SidebarRightHeaderComponent } from './admin/sidebar-right-header/sideba
 import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password.component';
 import { UserComponent } from './admin/setting/user/user.component';
 import { UserGroupComponent } from './admin/setting/user-group/user-group.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { UserGroupComponent } from './admin/setting/user-group/user-group.compon
 
     HttpClientModule,
     DataTablesModule,
+    ReactiveFormsModule,
+    FormsModule,
 
     AppRoutingModule
   ],
