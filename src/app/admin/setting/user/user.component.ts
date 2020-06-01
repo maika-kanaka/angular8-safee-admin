@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserService } from '../../../_model/setting/user.service';
 import { environment as env } from 'src/environments/environment';
 
 @Component({
@@ -12,7 +11,7 @@ export class UserComponent implements OnInit
 
   dtOptions: DataTables.Settings = {};
 
-  constructor(private userSrv: UserService) { }
+  constructor() { }
 
   ngOnInit() {
     this.dtOptions = {

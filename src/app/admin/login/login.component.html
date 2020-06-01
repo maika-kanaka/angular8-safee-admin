@@ -7,7 +7,7 @@
         </a>
       </div>
       <div class="login-form">
-        <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
           <div class="form-group">
             <label>Surel</label>
             <input
@@ -77,6 +77,10 @@
             Masuk
           </button>
         </form>
+
+        <div class="invalid-feedback">
+          {{ error }}
+        </div>
       </div>
     </div>
   </div>

@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiDomain: 'http://localhost',
   apiUrl: 'http://localhost/maika-kanaka/ci3-api-master/api'
 };
 

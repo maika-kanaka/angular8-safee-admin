@@ -10,3 +10,7 @@
 .invalid-feedback {
     display: block;
 }
+
+input[disabled=""], button[disabled=""] {
+    cursor: no-drop;
+}

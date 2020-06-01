@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password
 import { UserComponent } from './admin/setting/user/user.component';
 import { UserGroupComponent } from './admin/setting/user-group/user-group.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { environment as env } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -30,9 +32,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
 
     HttpClientModule,
-    DataTablesModule,
     ReactiveFormsModule,
     FormsModule,
+
+    DataTablesModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function(){
+          return localStorage.getItem("access_token")
+        },
+        whitelistedDomains: [ env.apiDomain ],
+        blacklistedRoutes: [ env.apiUrl + '/login' ]
+      }
+    }),
 
     AppRoutingModule
   ],
