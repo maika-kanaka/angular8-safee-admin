@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
     private authSrv: AuthService
   ) { 
     this.createForm();
+
+    if( localStorage.getItem("access_token") !== null ){
+      this.route.navigate(['/admin/dashboard']);
+    }
   }
 
   createForm() {

@@ -19,4 +19,8 @@ export class AuthService {
             return true;
           }));
   }
+
+  logout() {
+    localStorage.removeItem('access_token');
+  }
 }
