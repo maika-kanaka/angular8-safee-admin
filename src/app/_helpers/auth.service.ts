@@ -13,7 +13,7 @@ export class AuthService {
 
   login(formValue: object)
   { 
-    return this.http.post(env.apiUrl + '/login', formValue)
+    return this.http.post<any>(env.apiUrl + '/login', formValue)
           .pipe(map(result => {
             localStorage.setItem('access_token', result['data'].jwt);
             return true;

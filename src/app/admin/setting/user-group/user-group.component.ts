@@ -16,7 +16,10 @@ export class UserGroupComponent implements OnInit {
     this.dtOptions = {
       ajax: {
         url: env.apiUrl + '/sys/group/data',
-        dataSrc: 'data.groups'
+        dataSrc: 'data.groups',
+        data: {
+          jwtAuth: localStorage.getItem("access_token")
+        }
       },
       order: [[0, "asc"]],
       columns: [
