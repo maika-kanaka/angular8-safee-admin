@@ -14,13 +14,14 @@ export class AuthGuard implements CanActivate
     {
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-        if ( localStorage.getItem("access_token") !== null ) {
-            // check if route is restricted by role
-            // if (route.data.roles && route.data.roles.indexOf(currentUser.role) === -1) {
-            //     // role not authorised so redirect to home page
-            //     this.router.navigate(['/admin/dashboard']);
-            //     return false;
-            // }
+        if ( localStorage.getItem("access_token") !== null ) 
+        {
+            if( this.authSrv.hasAccess(route.data.menu_id) === false )
+            {
+                // role not authorised so redirect to home page
+                this.authSrv.logout();
+                return false;   
+            }            
 
             // authorised so return true
             return true;

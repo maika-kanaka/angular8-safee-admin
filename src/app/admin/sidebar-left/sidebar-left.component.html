@@ -11,8 +11,8 @@
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                <li *ngIf="this.authSrv.hasAccess('dashboard')" class="active">
+                    <a routerLink="/admin/dashboard"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                 </li>
                 <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
@@ -75,11 +75,15 @@
                     </ul>
                 </li>
                 <h3 class="menu-title">Pengaturan</h3><!-- /.menu-title -->
-                <li class="menu-item-has-children dropdown">
+                <li *ngIf="this.authSrv.hasAccess('system_users') || this.authSrv.hasAccess('system_user_group')" class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-key"></i>Pengguna</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-sign-in"></i><a routerLink="/admin/setting/user">Pengguna</a></li>
-                        <li><i class="menu-icon fa fa-window-restore"></i><a routerLink="/admin/setting/user/group">Kelompok Pengguna</a></li>
+                    <ul class="sub-menu children dropdown-menu">                    
+                        <li *ngIf="this.authSrv.hasAccess('system_users')">
+                            <i class="menu-icon fa fa-sign-in"></i><a routerLink="/admin/setting/user">Pengguna</a>
+                        </li>
+                        <li *ngIf="this.authSrv.hasAccess('system_user_group')">
+                            <i class="menu-icon fa fa-window-restore"></i><a routerLink="/admin/setting/user/group">Kelompok Pengguna</a>
+                        </li>
                     </ul>
                 </li>
                 <li><a routerLink="/admin/setting/general"><i class="menu-icon fa fa-wrench"></i> Umum</a></li>

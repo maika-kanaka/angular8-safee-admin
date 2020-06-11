@@ -8,6 +8,7 @@ import { environment as env } from '../../../../environments/environment';
 })
 export class UserGroupComponent implements OnInit {
 
+  static menu_id: string = 'system_user_group';
   dtOptions: DataTables.Settings = {};
 
   constructor() { }

@@ -6,15 +6,29 @@ import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password
 import { UserComponent } from './admin/setting/user/user.component';
 import { UserGroupComponent } from './admin/setting/user-group/user-group.component';
 import { AuthGuard } from './_helpers/auth.guard';
+import { LogoutComponent } from './admin/logout/logout.component';
 
 
 const routes: Routes = [
   {path: 'admin/login', component: LoginComponent},
+  {path: 'admin/logout', component: LogoutComponent},
   {path: 'admin/password/forgot', component: ForgotPasswordComponent},
 
-  {path: 'admin/dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  {path: 'admin/setting/user', component: UserComponent, canActivate: [AuthGuard]},
-  {path: 'admin/setting/user/group', component: UserGroupComponent, canActivate: [AuthGuard]},
+  {
+    path: 'admin/dashboard', 
+    component: DashboardComponent, 
+    canActivate: [AuthGuard], data: {menu_id: DashboardComponent.menu_id}
+  },
+  {
+    path: 'admin/setting/user', 
+    component: UserComponent, 
+    canActivate: [AuthGuard], data: {menu_id: UserComponent.menu_id}
+  },
+  {
+    path: 'admin/setting/user/group', 
+    component: UserGroupComponent, 
+    canActivate: [AuthGuard], data: {menu_id: UserGroupComponent.menu_id}
+  },
 
   {path: '', redirectTo: 'admin/login', pathMatch: 'full'}
 ];

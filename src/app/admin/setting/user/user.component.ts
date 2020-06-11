@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class UserComponent implements OnInit
 {
 
+  static menu_id: string = 'system_users';
   dtOptions: DataTables.Settings = {};
 
   constructor(private authSrv: AuthService, private route: Router) { }

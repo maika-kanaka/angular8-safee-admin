@@ -17,6 +17,7 @@ import { UserComponent } from './admin/setting/user/user.component';
 import { UserGroupComponent } from './admin/setting/user-group/user-group.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment as env } from 'src/environments/environment';
+import { LogoutComponent } from './admin/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { environment as env } from 'src/environments/environment';
     SidebarRightHeaderComponent,
     ForgotPasswordComponent,
     UserComponent,
-    UserGroupComponent
+    UserGroupComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

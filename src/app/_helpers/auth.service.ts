@@ -16,11 +16,25 @@ export class AuthService {
     return this.http.post<any>(env.apiUrl + '/login', formValue)
           .pipe(map(result => {
             localStorage.setItem('access_token', result['data'].jwt);
+            localStorage.setItem('pageAccess', JSON.stringify(result['data'].pageAccess));
             return true;
           }));
   }
 
-  logout() {
+  logout() 
+  {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('pageAccess');
+  }
+
+  hasAccess(menu_id: string): boolean
+  {
+    var myPageAccess = JSON.parse(localStorage.getItem("pageAccess"));
+
+    if (myPageAccess.indexOf(menu_id) === -1) {
+      return false;
+    }else{
+      return true;
+    }
   }
 }
