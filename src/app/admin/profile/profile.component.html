@@ -1,323 +1,358 @@
 <aside id="left-panel" class="left-panel" app-sidebar-left></aside>
 
 <div id="right-panel" class="right-panel">
-  <app-sidebar-right-header></app-sidebar-right-header>
+   <app-sidebar-right-header></app-sidebar-right-header>
 
-  <div class="breadcrumbs">
-    <div class="col-sm-4">
-      <div class="page-header float-left">
-        <div class="page-title">
-          <h1>Profil Saya</h1>
-        </div>
+   <div class="breadcrumbs">
+      <div class="col-sm-4">
+         <div class="page-header float-left">
+            <div class="page-title">
+               <h1>Profil Saya</h1>
+            </div>
+         </div>
       </div>
-    </div>
-    <div class="col-sm-8">
-      <div class="page-header float-right">
-        <div class="page-title">
-          <ol class="breadcrumb text-right">
-            <li class="active">Profil Saya</li>
-          </ol>
-        </div>
+      <div class="col-sm-8">
+         <div class="page-header float-right">
+            <div class="page-title">
+               <ol class="breadcrumb text-right">
+                  <li class="active">Profil Saya</li>
+               </ol>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 
-  <div class="content mt-3">
-    <div class="animated fadeIn">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-header">
-              <strong class="card-title mb-3"></strong>
+   <div class="content mt-3">
+      <div class="animated fadeIn">
+         <div class="row">
+            <div class="col-md-4">
+               <div class="card">
+                  <div class="card-header">
+                     <strong class="card-title mb-3"></strong>
+                  </div>
+                  <div class="card-body">
+                     <div class="mx-auto d-block">
+                        <img
+                           class="rounded-circle mx-auto d-block"
+                           src="assets/images/admin.jpg"
+                           alt="Card image cap"
+                        />
+                        <h5 class="text-sm-center mt-2 mb-1">
+                           {{ user.user_fullname }}
+                        </h5>
+                        <div class="location text-sm-center">
+                           <i class="fa fa-users"></i> {{ user.group_name }}
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="card-header">
+                     <strong class="card-title mb-3"></strong>
+                  </div>
+               </div>
             </div>
-            <div class="card-body">
-              <div class="mx-auto d-block">
-                <img
-                  class="rounded-circle mx-auto d-block"
-                  src="assets/images/admin.jpg"
-                  alt="Card image cap"
-                />
-                <h5 class="text-sm-center mt-2 mb-1">
-                  {{ user.user_fullname }}
-                </h5>
-                <div class="location text-sm-center">
-                  <i class="fa fa-users"></i> {{ user.group_name }}
-                </div>
-              </div>
+
+            <div class="col-md-8">
+               <div class="card">
+                  <div class="card-body">
+                     <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                           <a
+                              class="nav-link active"
+                              data-toggle="tab"
+                              href="#info-general"
+                              >Informasi Umum</a
+                           >
+                        </li>
+                        <li class="nav-item">
+                           <a
+                              class="nav-link"
+                              data-toggle="tab"
+                              href="#info-auth"
+                              >Otentikasi</a
+                           >
+                        </li>
+                     </ul>
+
+                     <div class="tab-content">
+                        <div
+                           id="info-general"
+                           class="tab-pane show fade in active"
+                        >
+                           <br />
+
+                           <form
+                              [formGroup]="profileForm"
+                              (ngSubmit)="updateProfile()"
+                           >
+                              <div class="form-group">
+                                 <label>Nama Lengkap *</label>
+                                 <input
+                                    type="text"
+                                    formControlName="user_fullname"
+                                    value=""
+                                    class="form-control"
+                                    placeholder=""
+                                 />
+
+                                 <div
+                                    *ngIf="
+                                       profileForm.invalid &&
+                                       (profileForm.dirty ||
+                                          profileForm.touched) &&
+                                       profileForm.controls['user_fullname']
+                                          .touched &&
+                                       profileForm.controls['user_fullname']
+                                          .errors
+                                    "
+                                    class="invalid-feedback"
+                                 >
+                                    <ng-container
+                                       *ngIf="
+                                          profileForm.controls['user_fullname']
+                                             .errors.required
+                                       "
+                                    >
+                                       Kolom ini wajib diisi
+                                    </ng-container>
+
+                                    <ng-container
+                                       *ngIf="
+                                          profileForm.controls['user_fullname']
+                                             .errors.minlength
+                                       "
+                                    >
+                                       Minimal 4 karakter
+                                    </ng-container>
+
+                                    <ng-container
+                                       *ngIf="
+                                          profileForm.controls['user_fullname']
+                                             .errors.maxlength
+                                       "
+                                    >
+                                       Maksimum 160 karakter
+                                    </ng-container>
+                                 </div>
+                              </div>
+
+                              <div class="form-group">
+                                 <label>Nama Pengguna *</label>
+                                 <input
+                                    type="text"
+                                    formControlName="user_name"
+                                    value=""
+                                    class="form-control"
+                                    placeholder=""
+                                 />
+
+                                 <div
+                                    *ngIf="
+                                       profileForm.invalid &&
+                                       (profileForm.dirty ||
+                                          profileForm.touched) &&
+                                       profileForm.controls['user_name']
+                                          .touched &&
+                                       profileForm.controls['user_name'].errors
+                                    "
+                                    class="invalid-feedback"
+                                 >
+                                    <ng-container
+                                       *ngIf="
+                                          profileForm.controls['user_name']
+                                             .errors.required
+                                       "
+                                    >
+                                       Kolom ini wajib diisi
+                                    </ng-container>
+
+                                    <ng-container
+                                       *ngIf="
+                                          profileForm.controls['user_name']
+                                             .errors.minlength
+                                       "
+                                    >
+                                       Minimal 4 karakter
+                                    </ng-container>
+
+                                    <ng-container
+                                       *ngIf="
+                                          profileForm.controls['user_name']
+                                             .errors.maxlength
+                                       "
+                                    >
+                                       Maksimum 50 karakter
+                                    </ng-container>
+
+                                    <ng-container
+                                       *ngIf="
+                                          profileForm.controls['user_name']
+                                             .errors.duplicat_username
+                                       "
+                                    >
+                                       Nama pengguna ini sudah dipakai
+                                    </ng-container>
+                                 </div>
+                              </div>
+
+                              <div class="form-group">
+                                 <label>Surel *</label>
+                                 <input
+                                    type="email"
+                                    formControlName="user_email"
+                                    value=""
+                                    class="form-control"
+                                    placeholder=""
+                                 />
+
+                                 <div
+                                    *ngIf="
+                                       profileForm.invalid &&
+                                       (profileForm.dirty ||
+                                          profileForm.touched) &&
+                                       profileForm.controls['user_email']
+                                          .touched &&
+                                       profileForm.controls['user_email'].errors
+                                    "
+                                    class="invalid-feedback"
+                                 >
+                                    <ng-container
+                                       *ngIf="
+                                          profileForm.controls['user_email']
+                                             .errors.required
+                                       "
+                                    >
+                                       Kolom ini wajib diisi
+                                    </ng-container>
+
+                                    <ng-container
+                                       *ngIf="
+                                          profileForm.controls['user_email']
+                                             .errors.email
+                                       "
+                                    >
+                                       Mohon isi dengan format surel yang benar
+                                    </ng-container>
+
+                                    <ng-container
+                                       *ngIf="
+                                          profileForm.controls['user_email']
+                                             .errors.duplicat_user_email
+                                       "
+                                    >
+                                       Surel ini sudah dipakai
+                                    </ng-container>
+                                 </div>
+                              </div>
+
+                              <button
+                                 [disabled]="
+                                    profileForm.pristine || profileForm.invalid
+                                 "
+                                 type="submit"
+                                 class="btn btn-success btn-flat m-b-30 m-t-30"
+                              >
+                                 Perbarui
+                              </button>
+                           </form>
+                        </div>
+
+                        <div id="info-auth" class="tab-pane">
+                           <br />
+
+                           <form
+                              [formGroup]="authForm"
+                              (ngSubmit)="updateAuth()"
+                           >
+                              <div class="form-group">
+                                 <label>Kata sandi *</label>
+                                 <input
+                                    type="password"
+                                    formControlName="user_password"
+                                    class="form-control"
+                                    placeholder=""
+                                 />
+
+                                 <div
+                                    *ngIf="
+                                       authForm.invalid &&
+                                       (authForm.dirty || authForm.touched) &&
+                                       authForm.controls['user_password']
+                                          .touched &&
+                                       authForm.controls['user_password'].errors
+                                    "
+                                    class="invalid-feedback"
+                                 >
+                                    <ng-container
+                                       *ngIf="
+                                          authForm.controls['user_password']
+                                             .errors.required
+                                       "
+                                    >
+                                       Kolom ini wajib diisi
+                                    </ng-container>
+
+                                    <ng-container
+                                       *ngIf="
+                                          authForm.controls['user_password']
+                                             .errors.minlength
+                                       "
+                                    >
+                                       Minimal 6 karakter
+                                    </ng-container>
+                                 </div>
+                              </div>
+
+                              <div class="form-group">
+                                 <label>Konfirmasi Kata sandi *</label>
+                                 <input
+                                    type="password"
+                                    formControlName="confirm_password"
+                                    class="form-control"
+                                    placeholder=""
+                                 />
+
+                                 <div
+                                    *ngIf="
+                                       authForm.invalid &&
+                                       (authForm.dirty || authForm.touched) &&
+                                       authForm.controls['confirm_password'].touched
+                                    "
+                                    class="invalid-feedback"
+                                 >
+                                    <ng-container
+                                       *ngIf="
+                                          authForm.controls['confirm_password']
+                                             .value !==
+                                          authForm.controls['user_password']
+                                             .value
+                                       "
+                                    >
+                                       Kolom katasandi dan kolom konfirmasi kata
+                                       sandi harus sama
+                                    </ng-container>
+                                 </div>
+                              </div>
+
+                              <button
+                                 [disabled]="
+                                    authForm.pristine || authForm.invalid
+                                 "
+                                 type="submit"
+                                 class="btn btn-success btn-flat m-b-30 m-t-30"
+                              >
+                                 Perbarui Kata Sandi
+                              </button>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
+         </div>
 
-            <div class="card-header">
-              <strong class="card-title mb-3"></strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-8">
-          <div class="card">
-            <div class="card-body">
-              <ul class="nav nav-tabs">
-                <li class="nav-item">
-                  <a
-                    class="nav-link active"
-                    data-toggle="tab"
-                    href="#info-general"
-                    >Informasi Umum</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#info-auth"
-                    >Otentikasi</a
-                  >
-                </li>
-              </ul>
-
-              <div class="tab-content">
-                <div id="info-general" class="tab-pane show fade in active">
-                  <br />
-
-                  <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
-                    <div class="form-group">
-                      <label>Nama Lengkap *</label>
-                      <input
-                        type="text"
-                        formControlName="user_fullname"
-                        value=""
-                        class="form-control"
-                        placeholder=""
-                      />
-
-                      <div
-                        *ngIf="
-                          profileForm.invalid &&
-                          (profileForm.dirty || profileForm.touched) &&
-                          profileForm.controls['user_fullname'].touched &&
-                          profileForm.controls['user_fullname'].errors
-                        "
-                        class="invalid-feedback"
-                      >
-                        <ng-container
-                          *ngIf="
-                            profileForm.controls['user_fullname'].errors
-                              .required
-                          "
-                        >
-                          Kolom ini wajib diisi
-                        </ng-container>
-
-                        <ng-container
-                          *ngIf="
-                            profileForm.controls['user_fullname'].errors
-                              .minlength
-                          "
-                        >
-                          Minimal 4 karakter
-                        </ng-container>
-
-                        <ng-container
-                          *ngIf="
-                            profileForm.controls['user_fullname'].errors
-                              .maxlength
-                          "
-                        >
-                          Maksimum 160 karakter
-                        </ng-container>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Nama Pengguna *</label>
-                      <input
-                        type="text"
-                        formControlName="user_name"
-                        value=""
-                        class="form-control"
-                        placeholder=""
-                      />
-
-                      <div
-                        *ngIf="
-                          profileForm.invalid &&
-                          (profileForm.dirty || profileForm.touched) &&
-                          profileForm.controls['user_name'].touched &&
-                          profileForm.controls['user_name'].errors
-                        "
-                        class="invalid-feedback"
-                      >
-                        <ng-container
-                          *ngIf="
-                            profileForm.controls['user_name'].errors.required
-                          "
-                        >
-                          Kolom ini wajib diisi
-                        </ng-container>
-
-                        <ng-container
-                          *ngIf="
-                            profileForm.controls['user_name'].errors.minlength
-                          "
-                        >
-                          Minimal 4 karakter
-                        </ng-container>
-
-                        <ng-container
-                          *ngIf="
-                            profileForm.controls['user_name'].errors.maxlength
-                          "
-                        >
-                          Maksimum 50 karakter
-                        </ng-container>
-
-                        <ng-container
-                          *ngIf="
-                            profileForm.controls['user_name'].errors.duplicat_username
-                          "
-                        >
-                          Nama pengguna ini sudah dipakai
-                        </ng-container>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Surel *</label>
-                      <input
-                        type="email"
-                        formControlName="user_email"
-                        value=""
-                        class="form-control"
-                        placeholder=""
-                      />
-
-                      <div
-                        *ngIf="
-                          profileForm.invalid &&
-                          (profileForm.dirty || profileForm.touched) &&
-                          profileForm.controls['user_email'].touched &&
-                          profileForm.controls['user_email'].errors
-                        "
-                        class="invalid-feedback"
-                      >
-                        <ng-container
-                          *ngIf="
-                            profileForm.controls['user_email'].errors.required
-                          "
-                        >
-                          Kolom ini wajib diisi
-                        </ng-container>
-
-                        <ng-container
-                          *ngIf="
-                            profileForm.controls['user_email'].errors.email
-                          "
-                        >
-                          Mohon isi dengan format surel yang benar
-                        </ng-container>
-
-                        <ng-container
-                          *ngIf="
-                            profileForm.controls['user_email'].errors.duplicat_user_email
-                          "
-                        >
-                          Surel ini sudah dipakai
-                        </ng-container>
-                      </div>
-                    </div>
-
-                    <button
-                      [disabled]="profileForm.pristine || profileForm.invalid"
-                      type="submit"
-                      class="btn btn-success btn-flat m-b-30 m-t-30"
-                    >
-                      Perbarui
-                    </button>
-                  </form>
-                </div>
-
-                <div id="info-auth" class="tab-pane">
-                  <br />
-
-                  <form [formGroup]="authForm" (ngSubmit)="updateAuth()">
-                    <div class="form-group">
-                      <label>Kata sandi *</label>
-                      <input
-                        type="password"
-                        formControlName="user_password"
-                        class="form-control"
-                        placeholder=""
-                      />
-
-                      <div
-                        *ngIf="
-                          authForm.invalid &&
-                          (authForm.dirty || authForm.touched) &&
-                          authForm.controls['user_password'].touched &&
-                          authForm.controls['user_password'].errors
-                        "
-                        class="invalid-feedback"
-                      >
-                        <ng-container
-                          *ngIf="
-                            authForm.controls['user_password'].errors.required
-                          "
-                        >
-                          Kolom ini wajib diisi
-                        </ng-container>
-
-                        <ng-container
-                          *ngIf="
-                            authForm.controls['user_password'].errors.minlength
-                          "
-                        >
-                          Minimal 6 karakter
-                        </ng-container>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Konfirmasi Kata sandi *</label>
-                      <input
-                        type="password"
-                        formControlName="confirm_password"
-                        class="form-control"
-                        placeholder=""
-                      />
-
-                      <div
-                        *ngIf="
-                          authForm.invalid &&
-                          (authForm.dirty || authForm.touched) &&
-                          authForm.controls['confirm_password'].touched &&
-                          authForm.controls['confirm_password'].errors
-                        "
-                        class="invalid-feedback"
-                      >
-                        <ng-container
-                          *ngIf="
-                            authForm.controls['confirm_password'].errors.notsame
-                          "
-                        >
-                          Kolom katasandi dan kolom konfirmasi kata sandi harus
-                          sama
-                        </ng-container>
-                      </div>
-                    </div>
-
-                    <button
-                      [disabled]="authForm.pristine || authForm.invalid"
-                      type="submit"
-                      class="btn btn-success btn-flat m-b-30 m-t-30"
-                    >
-                      Perbarui Kata Sandi
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+         <app-underwidth></app-underwidth>
+         <app-message type="update"></app-message>
       </div>
-
-      <app-underwidth></app-underwidth>
-      <app-message type="update"></app-message>
-    </div>
-  </div>
+   </div>
 </div>
