@@ -7,6 +7,7 @@ import { UserComponent } from './admin/setting/user/user.component';
 import { UserGroupComponent } from './admin/setting/user-group/user-group.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { LogoutComponent } from './admin/logout/logout.component';
+import { ProfileComponent } from './admin/profile/profile.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,11 @@ const routes: Routes = [
     path: 'admin/dashboard', 
     component: DashboardComponent, 
     canActivate: [AuthGuard], data: {menu_id: DashboardComponent.menu_id}
+  },
+  {
+    path: 'admin/profile', 
+    component: ProfileComponent, 
+    canActivate: [AuthGuard], data: {menu_id: ProfileComponent.menu_id}
   },
   {
     path: 'admin/setting/user', 

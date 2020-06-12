@@ -18,6 +18,9 @@ import { UserGroupComponent } from './admin/setting/user-group/user-group.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment as env } from 'src/environments/environment';
 import { LogoutComponent } from './admin/logout/logout.component';
+import { ProfileComponent } from './admin/profile/profile.component';
+import { MessageComponent } from './_ui/message/message.component';
+import { UnderwidthComponent } from './_ui/underwidth/underwidth.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { LogoutComponent } from './admin/logout/logout.component';
     ForgotPasswordComponent,
     UserComponent,
     UserGroupComponent,
-    LogoutComponent
+    LogoutComponent,
+    ProfileComponent,
+    MessageComponent,
+    UnderwidthComponent
   ],
   imports: [
     BrowserModule,

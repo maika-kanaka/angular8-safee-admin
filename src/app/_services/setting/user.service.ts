@@ -18,6 +18,27 @@ export class UserService {
 
   getAll(wheres)
   {
-    return this.http.get<User>(env.apiUrl + '/sys/user/data', wheres);
+    return this.http.get<User>(env.apiUrl + '/sys/user/data', {
+      params: wheres
+    });
+  }
+
+  checkEmailDuplicat(user_email)
+  {
+    return this.http.post<User>(env.apiUrl + '/sys/user/check_email_duplicat', {
+      user_email: user_email
+    });
+  }
+
+  checkUsernameDuplicat(user_name)
+  {
+    return this.http.post<User>(env.apiUrl + '/sys/user/check_username_duplicat', {
+      user_name: user_name
+    });
+  }
+
+  profileUpdate(data)
+  {
+    return this.http.post<User>(env.apiUrl + '/sys/user/profile_update', data);
   }
 }
