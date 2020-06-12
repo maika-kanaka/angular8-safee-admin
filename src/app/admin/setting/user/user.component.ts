@@ -43,4 +43,9 @@ export class UserComponent implements OnInit
     };
   }
 
+  modalUserAdd()
+  {
+    $("#modal-user-add").modal("show");
+  }
+
 }

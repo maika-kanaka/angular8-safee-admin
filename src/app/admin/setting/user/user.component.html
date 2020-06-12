@@ -1,65 +1,62 @@
-<aside id="left-panel" class="left-panel" app-sidebar-left>
-
-</aside>
+<aside id="left-panel" class="left-panel" app-sidebar-left></aside>
 
 <div id="right-panel" class="right-panel">
+  <app-sidebar-right-header></app-sidebar-right-header>
 
-    <app-sidebar-right-header></app-sidebar-right-header>
-
-    <div class="breadcrumbs">
-        <div class="col-sm-4">
-            <div class="page-header float-left">
-                <div class="page-title">
-                    <h1>Data Pengguna</h1>
-                </div>
-            </div>
+  <div class="breadcrumbs">
+    <div class="col-sm-4">
+      <div class="page-header float-left">
+        <div class="page-title">
+          <h1>Data Pengguna</h1>
         </div>
-        <div class="col-sm-8">
-            <div class="page-header float-right">
-                <div class="page-title">
-                    <ol class="breadcrumb text-right">
-                        <li><a href="#">Pengaturan</a></li>
-                        <li><a href="#">Pengguna & Hak Akses</a></li>
-                        <li class="active">Pengguna</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="col-sm-8">
+      <div class="page-header float-right">
+        <div class="page-title">
+          <ol class="breadcrumb text-right">
+            <li><a href="#">Pengaturan</a></li>
+            <li><a href="#">Pengguna & Hak Akses</a></li>
+            <li class="active">Pengguna</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <div class="content mt-3">
-
-        <div class="animated fadeIn">
-            <div class="row">
-
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <button class="btn btn-primary">
-                                <i class="fa fa-plus"></i>
-                                Tambah
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <table datatable [dtOptions]="dtOptions" style="width: 100%" class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Hak Akses</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Nama Pengguna</th>
-                                        <th>Surel</th>
-                                        <th>Aktif</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-
+  <div class="content mt-3">
+    <div class="animated fadeIn">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <button (click)="modalUserAdd()" class="btn btn-primary">
+                <i class="fa fa-plus"></i>
+                Tambah
+              </button>
             </div>
-        </div><!-- .animated -->
+            <div class="card-body">
+              <table datatable [dtOptions]="dtOptions" style="width: 100%;" class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Hak Akses</th>
+                    <th>Nama Lengkap</th>
+                    <th>Nama Pengguna</th>
+                    <th>Surel</th>
+                    <th>Aktif</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- .animated -->
+  </div>
+  <!-- .content -->
+</div>
+<!-- /#right-panel -->
 
-    </div> <!-- .content -->
-</div><!-- /#right-panel -->
+<app-user-add></app-user-add>
