@@ -18,7 +18,7 @@ export class MessageComponent implements OnInit {
     }
 
     if( this.type == "update" ){
-      this.message_body = "Berhasil simpan perbarui";
+      this.message_body = "Berhasil perbarui data";
     }
   }
 
