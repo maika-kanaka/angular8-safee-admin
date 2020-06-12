@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment as env } from 'src/environments/environment';
 
 import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/_helpers/auth.service';
 import { Router } from '@angular/router';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-user',
@@ -15,6 +16,9 @@ export class UserComponent implements OnInit
 
   static menu_id: string = 'system_users';
   dtOptions: DataTables.Settings = {};
+
+  @ViewChild(DataTableDirective, {static: false})
+  private datatableElement: DataTableDirective;
 
   constructor(private authSrv: AuthService, private route: Router) { }
 
@@ -46,6 +50,20 @@ export class UserComponent implements OnInit
   modalUserAdd()
   {
     $("#modal-user-add").modal("show");
+  }
+
+  onSaveUser()
+  {
+    this.reloadUserTable(this.datatableElement);
+  }
+
+  reloadUserTable(datatableElement: DataTableDirective): void
+  {
+    this.datatableElement.dtInstance.then(
+      (dtInstance: DataTables.Api) => {
+        dtInstance.ajax.reload();
+      }
+    );
   }
 
 }

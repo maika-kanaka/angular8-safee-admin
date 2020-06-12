@@ -41,4 +41,10 @@ export class UserService {
   {
     return this.http.post<User>(env.apiUrl + '/sys/user/profile_update', data);
   }
+
+  save(user)
+  {
+    return this.http.post(env.apiUrl + '/sys/user/save', user);
+  }
+
 }

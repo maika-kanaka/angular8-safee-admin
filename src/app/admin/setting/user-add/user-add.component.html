@@ -13,7 +13,7 @@
           <div class="form-group">
             <label>Kelompok Pengguna *</label>
             <select formControlName="group_id" class="form-control">
-              <option *ngFor="let group of groups" value="group.group_id"> {{ group.group_name }} </option>
+              <option *ngFor="let group of groups" value="{{ group.group_id }}"> {{ group.group_name }} </option>
             </select>
 
             <div *ngIf="
@@ -145,6 +145,22 @@
                 ">
                 Kolom katasandi dan kolom konfirmasi kata sandi harus sama
               </ng-container>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Blokir *</label>
+
+            <div>
+              <label for="radio-blokir-Y">
+                <input type="radio" id="radio-blokir-Y" formControlName="is_block" value="Y">
+                Iya
+              </label>
+
+              <label for="radio-blokir-N">
+                <input type="radio" id="radio-blokir-N" formControlName="is_block" value="N">
+                Tidak
+              </label>
             </div>
           </div>
         </form>

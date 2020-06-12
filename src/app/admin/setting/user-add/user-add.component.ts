@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/_services/setting/user.service';
 import { GroupService } from 'src/app/_services/setting/group.service';
@@ -9,6 +9,7 @@ import { GroupService } from 'src/app/_services/setting/group.service';
   styleUrls: ['./user-add.component.scss']
 })
 export class UserAddComponent implements OnInit {
+  @Output() actionSave = new EventEmitter<boolean>();
 
   userForm: FormGroup;
   groups: [];
@@ -40,7 +41,8 @@ export class UserAddComponent implements OnInit {
       user_name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)], this.validateUsernameDuplicat.bind(this)],
       user_email: ['', [Validators.required, Validators.email], this.validateEmailDuplicat.bind(this)],
       user_password: ['', [Validators.required, Validators.minLength(6)]],
-      confirm_password: ['']
+      confirm_password: [''],
+      is_block: ['N']
     }, {validators: this.validConfirmPassword});
   }
 
@@ -96,7 +98,11 @@ export class UserAddComponent implements OnInit {
 
   saveUser()
   {
-    
+    this.userSrv.save(this.userForm.value).subscribe(res => {
+      $('.toast').toast('show');
+      this.userForm.reset();
+      this.actionSave.emit(true);
+    });
   }
 
 }
