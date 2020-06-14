@@ -21,6 +21,7 @@ import { LogoutComponent } from './admin/logout/logout.component';
 import { ProfileComponent } from './admin/profile/profile.component';
 import { MessageComponent } from './_ui/message/message.component';
 import { UnderwidthComponent } from './_ui/underwidth/underwidth.component';
+import { UserGroupAddComponent } from './admin/setting/user-group-add/user-group-add.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UnderwidthComponent } from './_ui/underwidth/underwidth.component';
     LogoutComponent,
     ProfileComponent,
     MessageComponent,
-    UnderwidthComponent
+    UnderwidthComponent,
+    UserGroupAddComponent
   ],
   imports: [
     BrowserModule,
