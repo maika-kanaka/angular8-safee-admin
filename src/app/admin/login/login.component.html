@@ -9,10 +9,10 @@
       <div class="login-form">
         <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
           <div class="form-group">
-            <label>Surel</label>
+            <label>Surel / Nama Pengguna</label>
             <input
-              type="email"
-              formControlName="email"
+              type="text"
+              formControlName="email_or_username"
               class="form-control"
               placeholder=""
             />
@@ -21,17 +21,13 @@
               *ngIf="
                 loginForm.invalid &&
                 (loginForm.dirty || loginForm.touched) &&
-                loginForm.controls['email'].touched &&
-                loginForm.controls['email'].errors
+                loginForm.controls['email_or_username'].touched &&
+                loginForm.controls['email_or_username'].errors
               "
               class="invalid-feedback"
             >
-              <ng-container *ngIf="loginForm.controls['email'].errors.required">
+              <ng-container *ngIf="loginForm.controls['email_or_username'].errors.required">
                 Kolom ini wajib diisi
-              </ng-container>
-
-              <ng-container *ngIf="loginForm.controls['email'].errors.email">
-                Mohon isi dengan format email yang benar
               </ng-container>
             </div>
           </div>

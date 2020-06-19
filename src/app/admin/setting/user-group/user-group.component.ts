@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment as env } from '../../../../environments/environment';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-user-group',
@@ -10,6 +11,8 @@ export class UserGroupComponent implements OnInit {
 
   static menu_id: string = 'system_user_group';
   dtOptions: DataTables.Settings = {};
+  @ViewChild(DataTableDirective, {static: false})
+  private datatableElement: DataTableDirective;
 
   constructor() { }
 
@@ -33,6 +36,27 @@ export class UserGroupComponent implements OnInit {
         }
       ]
     };
+  }
+
+  refreshTableGroup(datatableElement: DataTableDirective)
+  {
+    datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      dtInstance.ajax.reload();
+    });
+  }
+
+
+
+  modalAddGroupUser()
+  {
+    $('#modal-user-group-add').modal('show');
+  }
+
+  eventUserGroupAdd($event)
+  {
+    if(typeof $event == 'string' && $event == 'refresh_data'){
+      this.refreshTableGroup(this.datatableElement);
+    }
   }
 
 }

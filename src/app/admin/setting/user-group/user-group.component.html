@@ -35,7 +35,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" (click)="modalAddGroupUser()">
                                 <i class="fa fa-plus"></i>
                                 Tambah
                             </button>
@@ -59,3 +59,5 @@
 
     </div> <!-- .content -->
 </div><!-- /#right-panel -->
+
+<app-user-group-add (messageEvent)="eventUserGroupAdd($event)"></app-user-group-add>

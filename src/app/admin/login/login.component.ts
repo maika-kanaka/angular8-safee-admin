@@ -16,12 +16,12 @@ export class LoginComponent implements OnInit {
   error: string;
 
   constructor(
-    private renderer: Renderer2, 
+    private renderer: Renderer2,
     private fb: FormBuilder,
     private route: Router,
 
     private authSrv: AuthService
-  ) { 
+  ) {
     this.createForm();
 
     if( localStorage.getItem("access_token") !== null ){
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   createForm() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email_or_username: ['', [Validators.required]],
       password: ['', Validators.required]
     });
   }
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         .subscribe(
           result => this.route.navigate(['/admin/dashboard']),
           err => {
-            this.error = "Combination of email and password is incorrect";
+            this.error = "Kombinasi nama pengguna / email & kata sandi tidak benar.";
         });
   }
 

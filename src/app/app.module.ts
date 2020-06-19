@@ -22,6 +22,7 @@ import { ProfileComponent } from './admin/profile/profile.component';
 import { MessageComponent } from './_ui/message/message.component';
 import { UnderwidthComponent } from './_ui/underwidth/underwidth.component';
 import { UserAddComponent } from './admin/setting/user-add/user-add.component';
+import { UserGroupAddComponent } from './admin/setting/user-group-add/user-group-add.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { UserAddComponent } from './admin/setting/user-add/user-add.component';
     ProfileComponent,
     MessageComponent,
     UnderwidthComponent,
-    UserAddComponent
+    UserAddComponent,
+    UserGroupAddComponent
   ],
   imports: [
     BrowserModule,
