@@ -51,7 +51,7 @@ export class UserComponent implements OnInit
           "render": function (data, type, full, meta) {
             var edt = "<button type='button' user-edit-id='"+ full.user_id +"' class='btn btn-sm btn-success'> <i user-edit-id='"+ full.user_id +"' class='fa fa-edit'></i> </button> ";
             var dlt = "<button type='button' user-delete-id='"+ full.user_id +"' class='btn btn-sm btn-danger'> <i user-delete-id='"+ full.user_id +"' class='fa fa-close'></i> </button> ";
-            return edt + " &nbsp; " + dlt;
+            return edt + " " + dlt;
           }
         }
       ]
