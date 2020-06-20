@@ -56,4 +56,11 @@ export class UserService {
     return this.http.post(env.apiUrl + '/sys/user/update', user);
   }
 
+
+
+  getUrlDelete()
+  {
+    return env.apiUrl + '/sys/user/delete';
+  }
+
 }

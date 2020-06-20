@@ -1,0 +1,39 @@
+<div class="modal" tabindex="-1" role="dialog" id="modal-confirmation">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        
+        <form #f="ngForm" (ngSubmit)="confirmAction(f)">
+
+        <div class="modal-header">
+          <h5 class="modal-title"> {{ title }} </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+  
+        <div class="modal-body">
+          <p> {{ message }} </p>
+  
+          <div class="input-reason mt-10" *ngIf="show_reason">
+            <input type="text" [(ngModel)]="reason" name="reason" placeholder="Jelaskan alasan anda ..." class="form-control">
+
+            <div class="invalid-feedback" *ngIf="invalid_feedback">
+              <p>
+                Kolom alasan hanya bisa diisi maksimal 250 karakter
+              </p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+            <input type="hidden" [(ngModel)]="id_trx" name="id_trx">
+            <button type="submit" class="btn btn-danger">Iya</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Engga Jadi</button>
+        </div>
+
+        </form>
+        
+      </div>
+    </div>
+  </div>
+  

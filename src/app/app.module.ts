@@ -24,6 +24,7 @@ import { UnderwidthComponent } from './_ui/underwidth/underwidth.component';
 import { UserAddComponent } from './admin/setting/user-add/user-add.component';
 import { UserGroupAddComponent } from './admin/setting/user-group-add/user-group-add.component';
 import { UserEditComponent } from './admin/setting/user-edit/user-edit.component';
+import { ModalConfirmComponent } from './_ui/modal-confirm/modal-confirm.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UserEditComponent } from './admin/setting/user-edit/user-edit.component
     UnderwidthComponent,
     UserAddComponent,
     UserGroupAddComponent,
-    UserEditComponent
+    UserEditComponent,
+    ModalConfirmComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/_helpers/auth.service';
 import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { UserEditComponent } from '../user-edit/user-edit.component';
+import { ModalConfirmComponent } from 'src/app/_ui/modal-confirm/modal-confirm.component';
+import { UserService } from 'src/app/_services/setting/user.service';
 
 @Component({
   selector: 'app-user',
@@ -24,7 +26,10 @@ export class UserComponent implements OnInit
   @ViewChild(UserEditComponent, {static: false})
   private userEditComp: UserEditComponent;
 
-  constructor(private authSrv: AuthService, private route: Router, private renderer: Renderer) { }
+  @ViewChild(ModalConfirmComponent, {static: false})
+  private modalConfirmComp: ModalConfirmComponent;
+
+  constructor(private userSrv: UserService, private route: Router, private renderer: Renderer) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -55,9 +60,16 @@ export class UserComponent implements OnInit
 
   ngAfterViewInit(): void {
     this.renderer.listenGlobal('document', 'click', (event) => {
-      if (event.target.hasAttribute("user-edit-id")) 
+      if ( event.target.hasAttribute("user-edit-id") ) 
       {
         this.userEditComp.fillForm( event.target.getAttribute("user-edit-id") );
+      }
+      else if( event.target.hasAttribute("user-delete-id") )
+      {
+        this.modalConfirmComp.showModal({
+          id_trx: event.target.getAttribute("user-delete-id"),
+          url: this.userSrv.getUrlDelete()
+        });
       }
     });
   }
