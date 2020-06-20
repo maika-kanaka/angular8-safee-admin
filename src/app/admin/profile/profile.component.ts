@@ -78,7 +78,7 @@ export class ProfileComponent implements OnInit {
 
       this.validate_user_name = setTimeout(() => {
 
-        this.userSrv.checkUsernameDuplicat(control.value).subscribe(res => {
+        this.userSrv.checkUsernameDuplicat(control.value, 'profile').subscribe(res => {
           if( res['ok'] )
           {
             resolve(null);
@@ -99,7 +99,7 @@ export class ProfileComponent implements OnInit {
 
       this.validate_user_email = setTimeout(() => {
 
-        this.userSrv.checkEmailDuplicat(control.value).subscribe(res => {
+        this.userSrv.checkEmailDuplicat(control.value, 'profile').subscribe(res => {
           if( res['ok'] )
           {
             resolve(null);

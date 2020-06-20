@@ -23,17 +23,21 @@ export class UserService {
     });
   }
 
-  checkEmailDuplicat(user_email)
+  checkEmailDuplicat(user_email, page = 'add', user_id = null)
   {
     return this.http.post<User>(env.apiUrl + '/sys/user/check_email_duplicat', {
-      user_email: user_email
+      user_email: user_email,
+      page: page,
+      user_id: user_id
     });
   }
 
-  checkUsernameDuplicat(user_name)
+  checkUsernameDuplicat(user_name, page = 'add', user_id = null)
   {
     return this.http.post<User>(env.apiUrl + '/sys/user/check_username_duplicat', {
-      user_name: user_name
+      user_name: user_name,
+      page: page,
+      user_id: user_id
     });
   }
 
@@ -45,6 +49,11 @@ export class UserService {
   save(user)
   {
     return this.http.post(env.apiUrl + '/sys/user/save', user);
+  }
+
+  update(user)
+  {
+    return this.http.post(env.apiUrl + '/sys/user/update', user);
   }
 
 }

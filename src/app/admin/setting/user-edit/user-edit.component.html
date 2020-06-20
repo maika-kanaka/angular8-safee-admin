@@ -1,0 +1,186 @@
+<div id="modal-user-edit" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ubah Pengguna</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+  
+        <div class="modal-body">
+          <form [formGroup]="userEditForm">
+            <input type="hidden" formControlName="user_id">
+            
+            <div class="form-group">
+              <label>Kelompok Pengguna *</label>
+              <select formControlName="group_id" class="form-control">
+                <option *ngFor="let group of groups" value="{{ group.group_id }}"> {{ group.group_name }} </option>
+              </select>
+  
+              <div *ngIf="
+                      userEditForm.invalid &&
+                      (userEditForm.dirty || userEditForm.touched) &&
+                      userEditForm.controls['group_id'].touched &&
+                      userEditForm.controls['group_id'].errors
+                      " class="invalid-feedback">
+                <ng-container *ngIf="userEditForm.controls['group_id'].errors.required">
+                  Kolom ini wajib diisi
+                </ng-container>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label>Nama Lengkap *</label>
+              <input type="text" formControlName="user_fullname" class="form-control" placeholder="" />
+  
+              <div *ngIf="
+                  userEditForm.invalid &&
+                  (userEditForm.dirty || userEditForm.touched) &&
+                  userEditForm.controls['user_fullname'].touched &&
+                  userEditForm.controls['user_fullname'].errors
+                " class="invalid-feedback">
+                <ng-container *ngIf="userEditForm.controls['user_fullname'].errors.required">
+                  Kolom ini wajib diisi
+                </ng-container>
+  
+                <ng-container *ngIf="userEditForm.controls['user_fullname'].errors.minlength">
+                  Minimal 4 karakter
+                </ng-container>
+  
+                <ng-container *ngIf="userEditForm.controls['user_fullname'].errors.maxlength">
+                  Maksimum 160 karakter
+                </ng-container>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label>Nama Pengguna *</label>
+              <input type="text" formControlName="user_name" value="" class="form-control" placeholder="" />
+  
+              <div *ngIf="
+                  userEditForm.invalid &&
+                  (userEditForm.dirty || userEditForm.touched) &&
+                  userEditForm.controls['user_name'].touched &&
+                  userEditForm.controls['user_name'].errors
+                " class="invalid-feedback">
+                <ng-container *ngIf="userEditForm.controls['user_name'].errors.required">
+                  Kolom ini wajib diisi
+                </ng-container>
+  
+                <ng-container *ngIf="userEditForm.controls['user_name'].errors.minlength">
+                  Minimal 4 karakter
+                </ng-container>
+  
+                <ng-container *ngIf="userEditForm.controls['user_name'].errors.maxlength">
+                  Maksimum 50 karakter
+                </ng-container>
+  
+                <ng-container *ngIf="userEditForm.controls['user_name'].errors.duplicat_username">
+                  Nama pengguna ini sudah dipakai
+                </ng-container>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label>Surel *</label>
+              <input type="email" formControlName="user_email" value="" class="form-control" placeholder="" />
+  
+              <div *ngIf="
+                  userEditForm.invalid &&
+                  (userEditForm.dirty || userEditForm.touched) &&
+                  userEditForm.controls['user_email'].touched &&
+                  userEditForm.controls['user_email'].errors
+                " class="invalid-feedback">
+                <ng-container *ngIf="userEditForm.controls['user_email'].errors.required">
+                  Kolom ini wajib diisi
+                </ng-container>
+  
+                <ng-container *ngIf="userEditForm.controls['user_email'].errors.email">
+                  Mohon isi dengan format surel yang benar
+                </ng-container>
+  
+                <ng-container *ngIf="
+                    userEditForm.controls['user_email'].errors.duplicat_user_email
+                  ">
+                  Surel ini sudah dipakai
+                </ng-container>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label>Kata sandi *</label>
+              <input type="password" formControlName="user_password" class="form-control" placeholder="" />
+  
+              <div *ngIf="
+                  userEditForm.invalid &&
+                  (userEditForm.dirty || userEditForm.touched) &&
+                  userEditForm.controls['user_password'].touched &&
+                  userEditForm.controls['user_password'].errors
+                " class="invalid-feedback">
+                <ng-container *ngIf="
+                    userEditForm.controls['user_password'].errors.required
+                  ">
+                  Kolom ini wajib diisi
+                </ng-container>
+  
+                <ng-container *ngIf="
+                    userEditForm.controls['user_password'].errors.minlength
+                  ">
+                  Minimal 6 karakter
+                </ng-container>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label>Konfirmasi Kata sandi *</label>
+              <input type="password" formControlName="confirm_password" class="form-control" placeholder="" />
+  
+                <div *ngIf="
+                  userEditForm.invalid &&
+                  (userEditForm.dirty || userEditForm.touched) &&
+                  userEditForm.controls['confirm_password'].touched
+                " class="invalid-feedback">
+                <ng-container *ngIf="
+                    userEditForm.controls['confirm_password'].value !==
+                    userEditForm.controls['user_password'].value
+                  ">
+                  Kolom katasandi dan kolom konfirmasi kata sandi harus sama
+                </ng-container>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label>Blokir *</label>
+  
+              <div>
+                <label for="radio-blokir-Y">
+                  <input type="radio" id="rdo-edit-blokir-Y" formControlName="is_block" value="Y">
+                  Iya
+                </label>
+  
+                <label for="radio-blokir-N">
+                  <input type="radio" id="rdo-edit-blokir-N" formControlName="is_block" value="N">
+                  Tidak
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" (click)="updateUser()" [disabled]="userEditForm.pristine || userEditForm.invalid"
+            class="btn btn-primary">
+            Perbaui Pengguna
+          </button>
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Engga Jadi
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <app-message type="update"></app-message>
+  

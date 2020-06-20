@@ -23,6 +23,7 @@ import { MessageComponent } from './_ui/message/message.component';
 import { UnderwidthComponent } from './_ui/underwidth/underwidth.component';
 import { UserAddComponent } from './admin/setting/user-add/user-add.component';
 import { UserGroupAddComponent } from './admin/setting/user-group-add/user-group-add.component';
+import { UserEditComponent } from './admin/setting/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UserGroupAddComponent } from './admin/setting/user-group-add/user-group
     MessageComponent,
     UnderwidthComponent,
     UserAddComponent,
-    UserGroupAddComponent
+    UserGroupAddComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

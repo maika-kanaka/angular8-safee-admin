@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Renderer } from '@angular/core';
 import { environment as env } from 'src/environments/environment';
 
 import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/_helpers/auth.service';
 import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
+import { UserEditComponent } from '../user-edit/user-edit.component';
 
 @Component({
   selector: 'app-user',
@@ -20,7 +21,10 @@ export class UserComponent implements OnInit
   @ViewChild(DataTableDirective, {static: false})
   private datatableElement: DataTableDirective;
 
-  constructor(private authSrv: AuthService, private route: Router) { }
+  @ViewChild(UserEditComponent, {static: false})
+  private userEditComp: UserEditComponent;
+
+  constructor(private authSrv: AuthService, private route: Router, private renderer: Renderer) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -37,14 +41,25 @@ export class UserComponent implements OnInit
         {data: 'user_fullname'},
         {data: 'user_name'},
         {data: 'user_email'},
-        {data: 'is_active'},
+        {data: 'is_block'},
         {
-            "render": function (data, type, full, meta) {
-                return "";
-            }
+          "render": function (data, type, full, meta) {
+            var edt = "<button type='button' user-edit-id='"+ full.user_id +"' class='btn btn-sm btn-success'> <i user-edit-id='"+ full.user_id +"' class='fa fa-edit'></i> </button> ";
+            var dlt = "<button type='button' user-delete-id='"+ full.user_id +"' class='btn btn-sm btn-danger'> <i user-delete-id='"+ full.user_id +"' class='fa fa-close'></i> </button> ";
+            return edt + " &nbsp; " + dlt;
+          }
         }
       ]
     };
+  }
+
+  ngAfterViewInit(): void {
+    this.renderer.listenGlobal('document', 'click', (event) => {
+      if (event.target.hasAttribute("user-edit-id")) 
+      {
+        this.userEditComp.fillForm( event.target.getAttribute("user-edit-id") );
+      }
+    });
   }
 
   modalUserAdd()
