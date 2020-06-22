@@ -4,6 +4,7 @@ import { DataTableDirective } from 'angular-datatables';
 
 import { ModalConfirmComponent } from 'src/app/_ui/modal-confirm/modal-confirm.component';
 import { UserGroupService } from 'src/app/_services/setting/user-group.service';
+import { UserGroupEditComponent } from '../user-group-edit/user-group-edit.component';
 
 @Component({
   selector: 'app-user-group',
@@ -17,6 +18,9 @@ export class UserGroupComponent implements OnInit {
 
   @ViewChild(DataTableDirective, {static: false})
   private datatableElement: DataTableDirective;
+
+  @ViewChild(UserGroupEditComponent, {static: false})
+  private userGroupEditComp: UserGroupEditComponent;
 
   @ViewChild(ModalConfirmComponent, {static: false})
   private modalConfirmComp: ModalConfirmComponent;
@@ -38,8 +42,8 @@ export class UserGroupComponent implements OnInit {
         {data: 'is_active'},
         {
             "render": function (data, type, full, meta) {
-              var edt = "<button type='button' user-edit-id='"+ full.group_id +"' class='btn btn-sm btn-success'> <i user-edit-id='"+ full.group_id +"' class='fa fa-edit'></i> </button> ";
-              var dlt = "<button type='button' user-delete-id='"+ full.group_id +"' class='btn btn-sm btn-danger'> <i user-delete-id='"+ full.group_id +"' class='fa fa-close'></i> </button> ";
+              var edt = "<button type='button' user-group-edit-id='"+ full.group_id +"' class='btn btn-sm btn-success'> <i user-group-edit-id='"+ full.group_id +"' class='fa fa-edit'></i> </button> ";
+              var dlt = "<button type='button' user-group-delete-id='"+ full.group_id +"' class='btn btn-sm btn-danger'> <i user-group-delete-id='"+ full.group_id +"' class='fa fa-close'></i> </button> ";
               return edt + " " + dlt;
             }
         }
@@ -49,14 +53,14 @@ export class UserGroupComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.renderer.listenGlobal('document', 'click', (event) => {
-      if ( event.target.hasAttribute("user-edit-id") ) 
+      if ( event.target.hasAttribute("user-group-edit-id") ) 
       {
-        
+        this.userGroupEditComp.fillForm( event.target.getAttribute("user-group-edit-id") );
       }
-      else if( event.target.hasAttribute("user-delete-id") )
+      else if( event.target.hasAttribute("user-group-delete-id") )
       {
         this.modalConfirmComp.showModal({
-          id_trx: event.target.getAttribute("user-delete-id"),
+          id_trx: event.target.getAttribute("user-group-delete-id"),
           url: this.userGroupSrv.getUrlDelete()
         });
       }

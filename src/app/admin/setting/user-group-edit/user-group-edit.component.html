@@ -1,0 +1,109 @@
+<div class="modal" id="modal-user-group-edit" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ubah Kelompok Pengguna</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+  
+        <div class="modal-body">
+  
+          <form [formGroup]="groupUserEditForm" (ngSubmit)="updateGroupUser()">
+            
+            <input type="hidden" formControlName="group_id">
+
+            <div class="row">
+              <div class="col-12 col-sm-6 border-right">
+  
+                <div class="form-group">
+                  <label>Nama Kelompok *</label>
+                  <input
+                    type="text"
+                    formControlName="group_name"
+                    class="form-control"
+                    placeholder=""
+                  />
+  
+                  <div
+                    *ngIf="
+                      groupUserEditForm.invalid &&
+                      (groupUserEditForm.dirty || groupUserEditForm.touched) &&
+                      groupUserEditForm.controls['group_name'].touched &&
+                      groupUserEditForm.controls['group_name'].errors
+                    "
+                    class="invalid-feedback"
+                  >
+                    <ng-container *ngIf="groupUserEditForm.controls['group_name'].errors.required">
+                      Kolom ini wajib diisi
+                    </ng-container>
+  
+                    <ng-container
+                            *ngIf="
+                            groupUserEditForm.controls['group_name'].errors.duplicat_group_name
+                            "
+                          >
+                            Nama kelompok ini sudah ada.
+                          </ng-container>
+                  </div>
+                </div>
+  
+                <div class="form-group">
+                  <label>Aktif</label>
+  
+                  <div class="radio-line">
+                    <label for="rdo-is_active-Y">
+                      <input
+                        id="rdo-is_active-Y"
+                        type="radio"
+                        formControlName="is_active"
+                        value="Y"
+                      />
+                      Iya
+                    </label>
+  
+                    <label for="rdo-is_active-N">
+                      <input
+                        id="rdo-is_active-N"
+                        type="radio"
+                        formControlName="is_active"
+                        value="N"
+                      />
+                      Tidak
+                    </label>
+                  </div>
+                </div>
+  
+              </div>
+  
+              <div class="col-12 col-sm-6" class="col-menu-list">
+  
+                <div class="wrapper-menu-list" formArrayName="page_access">
+                  <div *ngFor="let pa of groupUserEditForm.controls['page_access'].controls; index as i" class="menu-list {{ (menus[i].menu_id_top != null) ? 'is-child' : 'is-top' }}">
+                    <label for="edit-chk-menu-list-{{ menus[i].menu_id }}">
+                      <input type="checkbox" [formControlName]="i" id="edit-chk-menu-list-{{ menus[i].menu_id }}">
+                      {{ menus[i].menu_name }}
+                    </label>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+  
+          </form>
+  
+        </div>
+  
+        <div class="modal-footer">
+          <button [disabled]="groupUserEditForm.pristine || groupUserEditForm.invalid" type="button" (click)="updateGroupUser()" class="btn btn-primary">
+            Perbarui Data
+          </button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Engga Jadi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <app-message type="update"></app-message>
+  

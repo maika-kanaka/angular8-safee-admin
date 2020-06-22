@@ -25,6 +25,7 @@ import { UserAddComponent } from './admin/setting/user-add/user-add.component';
 import { UserGroupAddComponent } from './admin/setting/user-group-add/user-group-add.component';
 import { UserEditComponent } from './admin/setting/user-edit/user-edit.component';
 import { ModalConfirmComponent } from './_ui/modal-confirm/modal-confirm.component';
+import { UserGroupEditComponent } from './admin/setting/user-group-edit/user-group-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ModalConfirmComponent } from './_ui/modal-confirm/modal-confirm.compone
     UserAddComponent,
     UserGroupAddComponent,
     UserEditComponent,
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    UserGroupEditComponent
   ],
   imports: [
     BrowserModule,
