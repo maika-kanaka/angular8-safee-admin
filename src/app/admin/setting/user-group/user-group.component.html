@@ -35,9 +35,12 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <button class="btn btn-primary" (click)="modalAddGroupUser()">
+                            <button (click)="refreshTableGroup(datatableElement)" class="btn btn-dark">
+                                <i class="fa fa-refresh"></i>
+                            </button>
+            
+                            <button (click)="modalAddGroupUser()" class="btn btn-primary">
                                 <i class="fa fa-plus"></i>
-                                Tambah
                             </button>
                         </div>
                         <div class="card-body">
