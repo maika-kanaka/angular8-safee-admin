@@ -78,9 +78,9 @@
             <div class="col-12 col-sm-6" class="col-menu-list">
 
               <div class="wrapper-menu-list" formArrayName="page_access">
-                <div *ngFor="let pa of page_access.controls; index as i" class="menu-list {{ (menus[i].menu_id_top != null) ? 'is-child' : 'is-top' }}">
+                <div *ngFor="let pa of groupUserForm.controls['page_access'].controls; index as i" class="menu-list {{ (menus[i].menu_id_top != null) ? 'is-child' : 'is-top' }}">
                   <label for="chk-menu-list-{{ menus[i].menu_id }}">
-                    <input type="checkbox" [formControl]="page_access.controls[i]" id="chk-menu-list-{{ menus[i].menu_id }}">
+                    <input type="checkbox" [formControlName]="i" id="chk-menu-list-{{ menus[i].menu_id }}">
                     {{ menus[i].menu_name }}
                   </label>
                 </div>

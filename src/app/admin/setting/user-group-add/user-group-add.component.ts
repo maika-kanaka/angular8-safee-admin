@@ -14,7 +14,6 @@ export class UserGroupAddComponent implements OnInit {
   modal_id: string = '#modal-user-group-add';
 
   // property form
-  page_access = new FormArray([]);
   menus: string[];
   groupUserForm: FormGroup;
   validate_group_name: any;
@@ -40,7 +39,7 @@ export class UserGroupAddComponent implements OnInit {
 
       for(var i = 0; i < this.menus.length; i++)
       {
-        this.page_access.push(new FormControl(this.menus[i]['menu_id']));
+        (this.groupUserForm.controls['page_access'] as FormArray).push(new FormControl(false));
       }
     });
   }
@@ -50,7 +49,7 @@ export class UserGroupAddComponent implements OnInit {
     this.groupUserForm = this.fb.group({
       group_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(120)], this.validateGroupNameDuplicat.bind(this)],
       is_active: ['Y', [Validators.required]],
-      page_access: this.page_access
+      page_access: new FormArray([])
     });
   }
 
@@ -77,7 +76,15 @@ export class UserGroupAddComponent implements OnInit {
 
   saveGroupUser()
   {
-    this.userGroupSrv.save(this.groupUserForm.value).subscribe(res => {
+    var new_my_page_access = [];
+    var page_access = this.groupUserForm.controls['page_access'].value;
+    page_access.forEach((o, i) => {
+      if(o != false){
+        new_my_page_access.push( this.menus[i]['menu_id'] );
+      }
+    });
+
+    this.userGroupSrv.save(this.groupUserForm.value, new_my_page_access).subscribe(res => {
       this.groupUserForm.controls['group_name'].setValue('');
       this.messageEvent.emit('refresh_data');
       $('.toast').toast('show');

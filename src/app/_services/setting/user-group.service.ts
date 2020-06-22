@@ -22,8 +22,9 @@ export class UserGroupService {
     });
   }
 
-  save(data)
+  save(data, page_access)
   {
+    data['page_access'] = page_access;
     return this.http.post<UserGroup>(env.apiUrl + '/sys/group/save', data);
   }
 
