@@ -65,7 +65,7 @@ export class ModalConfirmComponent implements OnInit {
 
   finishConfirmation()
   {
-
+    $(this.modal_id).modal("hide");
   }
 
 }

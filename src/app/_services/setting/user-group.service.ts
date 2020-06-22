@@ -27,4 +27,11 @@ export class UserGroupService {
     });
   }
 
+
+
+  getUrlDelete()
+  {
+    return env.apiUrl + '/sys/group/delete';
+  }
+
 }
