@@ -30,7 +30,10 @@ export class AuthService {
 
   hasAccess(menu_id: string): boolean
   {
-    var myPageAccess = JSON.parse(localStorage.getItem("pageAccess"));
+    var myPageAccess = [];
+    if(localStorage.getItem("pageAccess") !== null){
+      myPageAccess = JSON.parse(localStorage.getItem("pageAccess"));
+    }
 
     // minimum access
     myPageAccess.push("my_profile");

@@ -19,6 +19,7 @@ export class AuthGuard implements CanActivate
             if( this.authSrv.hasAccess(route.data.menu_id) === false )
             {
                 // role not authorised so redirect to home page
+                window.alert("You do not have permission to access this page");
                 this.authSrv.logout();
                 return false;   
             }            
